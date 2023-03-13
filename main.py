@@ -2,10 +2,9 @@ from utils.object_detection import detect_objects
 from utils.lane_detection import detect_lane
 import cv2
 
-
 # Define the input and output video paths
 input_video_path = './project_video.mp4'
-output_video_path = './output.mp4'
+output_video_path = input_video_path + '_output.mp4'
 
 # Initialize the input and output video streams
 input_stream = cv2.VideoCapture(input_video_path)
