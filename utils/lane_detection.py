@@ -4,7 +4,9 @@ from tensorflow import keras
 import cv2
 
 # Load the lane detection model
-lane_model = keras.models.load_model(r'model.h5')
+# lane_model = keras.models.load_model(r'model.h5')
+# lane_model = keras.models.load_model(r'full_CNN_model.h5')
+lane_model = keras.models.load_model(r'LLDNet.h5')
 
 class Lanes():
     def __init__(self):
@@ -32,6 +34,6 @@ def detect_lane(frame):
   # Draw the detected lane lines on the frame
   blanks = np.zeros_like(lanes.avg_fit).astype(np.uint8)
   lane_drawn = np.dstack((blanks, lanes.avg_fit, blanks))
-  lane_image = imresize(lane_drawn, (720, 1280, 3))
-  
+  lane_image = imresize(lane_drawn, (frame.shape[0], frame.shape[1], 3))
+
   return cv2.addWeighted(frame, 1, lane_image, 1, 0)
